@@ -74,8 +74,28 @@ input:focus {
 
 .large {
   width: 614px;
-  min-height: 381px;
+  height: 381px;
   padding: 2rem;
+  overflow-y: auto;
+}
+
+.large::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.large::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Handle */
+.large::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.large::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .classic-btn {
@@ -153,14 +173,7 @@ input:focus {
   margin-bottom: 0.5rem;
 }
 .data-list__icon {
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.06);
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex !important;
   height: 30px;
-  justify-content: center;
-  opacity: 0.5;
   width: 30px;
 }
 .data-list__icon:active {
@@ -175,6 +188,16 @@ input:focus {
   height: 25px !important;
   font-size: 13px !important;
   margin: 0 !important;
+}
+
+.copy {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex !important;
+  justify-content: center;
+  opacity: 0.5;
 }
 
 .checkbox {

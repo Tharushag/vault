@@ -7,11 +7,11 @@
   <div class="classic-box large">
     <nav class="navbar">
       <ul class="navbar__list">
-        <li class="green pointer">Generate</li>
-        <li class="red pointer">Delete</li>
+        <li class="green pointer" id="gen-pass">Generate</li>
+        <li class="red pointer" id="delete-item">Delete</li>
         <li class="blue pointer" id="add-item">Add new item</li>
         <li>
-          <button class="classic-btn m0">Save as</button>
+          <button class="classic-btn m0" id="save-as">Save as</button>
         </li>
       </ul>
     </nav>
@@ -22,27 +22,15 @@
       </span>
 
       <div class="data-list__item">
-        <span class="checkbox checkbox__main checkbox--off">
+        <span class="checkbox checkbox__main checkbox--off" onclick="checkboxToggle(this)">
           <i class="fa-solid fa-check checkbox__icon"></i>
         </span>
-        <input type="text">
+        <input type="text" name="website" autofocus>
         <div class="rel">
-          <input type="password">
-          <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
+          <input type="password" name="password" class="password">
+          <button type="button" class="password-btn" data-toggle="Show;Hide" onclick="passwordVisibilityToggle(this)">Show</button>
         </div>
-        <i class="fa-regular fa-copy data-list__icon"></i>
-      </div>
-
-      <div class="data-list__item">
-        <span class="checkbox checkbox__main checkbox--off">
-          <i class="fa-solid fa-check checkbox__icon"></i>
-        </span>
-        <input type="text">
-        <div class="rel">
-          <input type="password">
-          <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
-        </div>
-        <i class="fa-regular fa-copy data-list__icon"></i>
+        <i class="fa-regular fa-copy data-list__icon copy" onclick="copy(this)"></i>
       </div>
     </form>
   </div>

@@ -90,9 +90,27 @@ input {
   width: 614px;
   height: 381px;
   padding: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
+.large::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.large::-webkit-scrollbar-track {
+  background: $grey;
+}
+
+/* Handle */
+.large::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.large::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 .classic-btn {
   @include init-styles;
   @include full-center();
@@ -156,14 +174,7 @@ input {
   }
 
   &__icon {
-    align-items: center;
-    background-color: rgba(255, 255, 255, 6%);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex !important;
     height: 30px;
-    justify-content: center;
-    opacity: .5;
     width: 30px;
 
     &:active {
@@ -182,6 +193,16 @@ input {
     font-size: 13px !important;
     margin: 0 !important;
   }
+}
+
+.copy {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 6%);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex !important;
+  justify-content: center;
+  opacity: .5;
 }
 
 .checkbox {

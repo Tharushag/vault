@@ -32,13 +32,7 @@ const User = new mongoose.model("User", userSchema);
 const Website = new mongoose.model("Website", websiteSchema);
 
 app.get("/", (req, res) => {
-  if (session.user) {
-    User.findOne({ name: session.user }).then(user => {
-      res.render("dashboard.ejs");
-    });
-  } else {
-    res.redirect("/login");
-  }
+  res.render("dashboard.ejs");
 });
 
 app.get("/login", (req, res) => {
@@ -90,6 +84,10 @@ app.post("/sign-up", (req, res) => {
 app.get("/forgot-password", (req, res) => {
   res.redirect("/");
 })
+
+app.post("/save", (req, res) => {
+  res.redirect("/");
+});
 
 app.listen(port, () => {
   console.log(`Server started at ${port}`);
