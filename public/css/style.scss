@@ -1,0 +1,131 @@
+$font-stack: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$bg: #1E1E1E;
+$black: #2C2D31;
+$grey: rgba(255, 255, 255, 6%);
+$blue: #5160F9;
+$green: #69F951;
+$red: #F9516F;
+
+@mixin reset-spacing {
+  padding: 0;
+  margin: 0;
+}
+
+@mixin init-styles {
+  color: white;
+  border: none;
+  font-family: $font-stack;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin full-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  @include reset-spacing;
+  @include init-styles;
+  @include full-center();
+  background-color: $bg;
+  min-height: 100vh;
+}
+
+h1 {
+  @include reset-spacing;
+  font-weight: 500;
+  font-size: 32px;
+  padding-bottom: 1.5rem;
+}
+
+hr {
+  margin: 2rem 0 .5rem;
+}
+
+a {
+  color: white;
+  font-size: 12px;
+  font-weight: 200;
+  float: right;
+  text-decoration: underline;
+}
+
+label {
+  display: block;
+  font-weight: 200;
+  margin-bottom: .4rem;
+}
+
+input {
+  @include init-styles;
+  background-color: $grey;
+  border: none;
+  box-sizing: border-box;
+  height: 30px;
+  margin-bottom: 1rem;
+  padding: 6px;
+  width: 100%;
+}
+
+.classic-box {
+  background-color: $black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+}
+
+.small {
+  width: 400px;
+  min-height: 400px;
+}
+
+.classic-btn {
+  @include init-styles;
+  @include full-center();
+  background-color: $blue;
+  height: 32px;
+  margin-top: 2.5rem;
+  text-transform: lowercase;
+  width: 93px;
+
+  &:hover {
+    border: 3px solid #1fb1ec;
+  }
+}
+
+.password-btn {
+  @include reset-spacing;
+  @include init-styles;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  float: right;
+  opacity: .6;
+}
+
+.error {
+  display: inline;
+  color: $red;
+  margin-left: .2rem;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.mt1 {
+  margin-top: .5rem;
+}

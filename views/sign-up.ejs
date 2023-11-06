@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include("partials/head") %>
+</head>
+<body>
+  <div class="classic-box small">
+    <h1>Sign up</h1>
+
+    <form action="/sign-up" method="POST" id="form">
+      <div>
+        <label>Name <small class="error"></small></label>
+        <input type="text" name="name" autofocus>
+      </div>
+
+      <div>
+        <div>
+          <label>Password <small class="error"></small></label>
+        </div>
+        <input class="m0" type="password" name="password">
+        <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
+      </div>
+
+      <button class="classic-btn" type="submit">sign up</button>
+
+      <hr>
+
+      <a href="/login">Already have an account?</a>
+    </form>
+  </div>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>

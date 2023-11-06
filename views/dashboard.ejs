@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include("partials/head") %>
+</head>
+<body>
+  <div class="classic-box small">
+    <h1>Login</h1>
+
+    <form action="/login" method="POST" id="form">
+      <div>
+        <label>Name 
+          <% if (locals.nameError) { %>
+            <small class="error"><%= nameError %></small>
+          <% } else { %>
+            <small class="error"></small>
+          <% } %>
+        </label>
+        <input type="text" name="name" autofocus>
+      </div>
+
+      <div>
+        <div>
+          <label>Password 
+            <% if (locals.passwordError) { %>
+              <small class="error"><%= passwordError %></small>
+            <% } else { %>
+              <small class="error"></small>
+            <% } %>
+          </label>
+        </div>
+        <input class="m0" type="password" name="password">
+        <div class="space-between mt1">
+          <a href="/forgot-password">Forgot password?</a>
+          <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
+        </div>
+      </div>
+
+      <button class="classic-btn" type="submit">Login</button>
+
+      <hr>
+
+      <a href="/sign-up">Create a new account</a>
+    </form>
+  </div>
+
+  <%- include('partials/footer') %>
+
+</body>
+</html>

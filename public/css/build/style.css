@@ -1,0 +1,133 @@
+body {
+  padding: 0;
+  margin: 0;
+  color: white;
+  border: none;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #1E1E1E;
+  min-height: 100vh;
+}
+body:focus {
+  outline: none;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+  font-size: 32px;
+  padding-bottom: 1.5rem;
+}
+
+hr {
+  margin: 2rem 0 0.5rem;
+}
+
+a {
+  color: white;
+  font-size: 12px;
+  font-weight: 200;
+  float: right;
+  text-decoration: underline;
+}
+
+label {
+  display: block;
+  font-weight: 200;
+  margin-bottom: 0.4rem;
+}
+
+input {
+  color: white;
+  border: none;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: none;
+  box-sizing: border-box;
+  height: 30px;
+  margin-bottom: 1rem;
+  padding: 6px;
+  width: 100%;
+}
+input:focus {
+  outline: none;
+}
+
+.classic-box {
+  background-color: #2C2D31;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.5rem 2rem;
+}
+
+.small {
+  width: 400px;
+  min-height: 400px;
+}
+
+.classic-btn {
+  color: white;
+  border: none;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: #5160F9;
+  height: 32px;
+  margin-top: 2.5rem;
+  text-transform: lowercase;
+  width: 93px;
+}
+.classic-btn:focus {
+  outline: none;
+}
+.classic-btn:hover {
+  border: 3px solid #1fb1ec;
+}
+
+.password-btn {
+  padding: 0;
+  margin: 0;
+  color: white;
+  border: none;
+  font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1rem;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  float: right;
+  opacity: 0.6;
+}
+.password-btn:focus {
+  outline: none;
+}
+
+.error {
+  display: inline;
+  color: #F9516F;
+  margin-left: 0.2rem;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.m0 {
+  margin: 0;
+}
+
+.mt1 {
+  margin-top: 0.5rem;
+}
+
+/*# sourceMappingURL=style.css.map */
