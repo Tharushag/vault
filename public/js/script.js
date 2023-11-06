@@ -1,4 +1,4 @@
-const dataList = `<div class="data-list__item">
+const dataListItem = `<div class="data-list__item">
 <span class="checkbox checkbox__main checkbox--off">
   <i class="fa-solid fa-check checkbox__icon"></i>
 </span>
@@ -60,6 +60,6 @@ $(document).ready(() => {
   });
 
   $("#add-item").click(() => {
-    console.log(123);
+    $(".data-list").append(dataListItem);
   });
 });

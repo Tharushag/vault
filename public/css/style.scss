@@ -88,8 +88,9 @@ input {
 
 .large {
   width: 614px;
-  min-height: 381px;
+  height: 381px;
   padding: 2rem;
+  overflow-y: scroll;
 }
 
 .classic-btn {
