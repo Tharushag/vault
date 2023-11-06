@@ -5,7 +5,7 @@ import encrypt from "mongoose-encryption";
 const app = express();
 const port = 3000;
 let session = {
-  user: "123",
+  user: null,
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,20 +19,30 @@ const userSchema = new mongoose.Schema({
 });
 
 const websiteSchema = new mongoose.Schema({
-  user: String,
-  website: String,
-  password: String,
+  user_id: String,
+  websites: [
+    {
+      website: String,
+      password: String,
+    }
+  ]
 });
 
 const secret = "EO$WIriJESKKRNKJENWKJWEjewkjnwekjnwe";
 
-userSchema.plugin(encrypt, { secret: secret, encryptedFields: ["password"] });
+userSchema.plugin(encrypt, { secret: secret, encryptedFields: ["password"] })
+websiteSchema.plugin(encrypt, { secret: secret, encryptedFields: ["websites"] });
 
 const User = new mongoose.model("User", userSchema);
 const Website = new mongoose.model("Website", websiteSchema);
 
 app.get("/", (req, res) => {
-  res.render("dashboard.ejs");
+  if (session.user) {
+
+    res.render("dashboard.ejs");
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/login", (req, res) => {
@@ -44,7 +54,7 @@ app.post("/login", (req, res) => {
 
     if (user) {
       if (user.password === req.body.password) {
-        session.user = req.body.name;
+        session.user = user.id;
         res.redirect('/');
       } else {
         res.render("login.ejs", { passwordError: "*Incorrect password" });
@@ -75,10 +85,11 @@ app.post("/sign-up", (req, res) => {
   });
 
   user.save().then(() => {
-    console.log("Created user...");
+    session.user = user.id;
+    res.redirect("/");
+  }).catch(err => {
+    res.redirect("/sign-up", { bug: "Couldn't save user." });
   });
-
-  res.redirect("/sign-up");
 })
 
 app.get("/forgot-password", (req, res) => {
@@ -86,7 +97,23 @@ app.get("/forgot-password", (req, res) => {
 })
 
 app.post("/save", (req, res) => {
-  res.redirect("/");
+  if (session.user) {
+    const websites = typeof req.body.website === 'string' ? [req.body.website] : req.body.website;
+    const passwords = typeof req.body.password === 'string' ? [req.body.password] : req.body.password;
+    const data = websites.map((site, i) => {
+      return { website: site, password: passwords[i] }
+    }).filter(d => d.website != '');
+
+    const website = Website({
+      user_id: session.user,
+      websites: data,
+    });
+
+    website.save();
+    res.redirect('/');
+  } else {
+    res.redirect('/');
+  }
 });
 
 app.listen(port, () => {

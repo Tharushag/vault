@@ -117,6 +117,11 @@ $(document).ready(() => {
   });
 
   $("#save-as").click(() => {
-    $("form").submit();
+    const websites = Array.from($("input[name='website']")).map(input => $(input).val());
+    if (new Set(websites).size !== websites.length) {
+      console.log("Remove duplicate values!");
+    } else {
+      $("form").submit();
+    }
   });
 });
