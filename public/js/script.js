@@ -1,3 +1,25 @@
+const dataList = `<div class="data-list__item">
+<span class="checkbox checkbox__main checkbox--off">
+  <i class="fa-solid fa-check checkbox__icon"></i>
+</span>
+<input type="text">
+<div class="rel">
+  <input type="password">
+  <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
+</div>
+<i class="fa-regular fa-copy data-list__icon"></i>
+</div>`;
+
+function toggleCheckBox(chkbx) {
+  if ($(chkbx).attr("class").includes("off")) {
+    $(chkbx).addClass("checkbox--on");
+    $(chkbx).removeClass("checkbox--off");
+  } else {
+    $(chkbx).addClass("checkbox--off");
+    $(chkbx).removeClass("checkbox--on");
+  }
+}
+
 $(document).ready(() => {
   $('.password-btn').click(({ target }) => {
     const states = $(target).data("toggle").split(';');
@@ -24,5 +46,20 @@ $(document).ready(() => {
       });
       event.preventDefault();
     }
+  });
+
+  $(".checkbox__all").click(() => {
+    const checkboxes = Array.from($(".checkbox"));
+    checkboxes.forEach(chkbx => {
+      toggleCheckBox(chkbx);
+    });
+  });
+
+  $(".checkbox:not(.checkbox__all)").click(({ target }) => {
+    toggleCheckBox(target);
+  });
+
+  $("#add-item").click(() => {
+    console.log(123);
   });
 });

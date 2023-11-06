@@ -4,43 +4,46 @@
 <%- include("partials/head") %>
 </head>
 <body>
-  <div class="classic-box small">
-    <h1>Login</h1>
+  <div class="classic-box large">
+    <nav class="navbar">
+      <ul class="navbar__list">
+        <li class="green pointer">Generate</li>
+        <li class="red pointer">Delete</li>
+        <li class="blue pointer" id="add-item">Add new item</li>
+        <li>
+          <button class="classic-btn m0">Save as</button>
+        </li>
+      </ul>
+    </nav>
 
-    <form action="/login" method="POST" id="form">
-      <div>
-        <label>Name 
-          <% if (locals.nameError) { %>
-            <small class="error"><%= nameError %></small>
-          <% } else { %>
-            <small class="error"></small>
-          <% } %>
-        </label>
-        <input type="text" name="name" autofocus>
-      </div>
+    <form class="data-list" action="/save" method="post">
+      <span class="checkbox checkbox__all checkbox--off">
+        <i class="fa-solid fa-check checkbox__icon"></i>
+      </span>
 
-      <div>
-        <div>
-          <label>Password 
-            <% if (locals.passwordError) { %>
-              <small class="error"><%= passwordError %></small>
-            <% } else { %>
-              <small class="error"></small>
-            <% } %>
-          </label>
-        </div>
-        <input class="m0" type="password" name="password">
-        <div class="space-between mt1">
-          <a href="/forgot-password">Forgot password?</a>
+      <div class="data-list__item">
+        <span class="checkbox checkbox__main checkbox--off">
+          <i class="fa-solid fa-check checkbox__icon"></i>
+        </span>
+        <input type="text">
+        <div class="rel">
+          <input type="password">
           <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
         </div>
+        <i class="fa-regular fa-copy data-list__icon"></i>
       </div>
 
-      <button class="classic-btn" type="submit">Login</button>
-
-      <hr>
-
-      <a href="/sign-up">Create a new account</a>
+      <div class="data-list__item">
+        <span class="checkbox checkbox__main checkbox--off">
+          <i class="fa-solid fa-check checkbox__icon"></i>
+        </span>
+        <input type="text">
+        <div class="rel">
+          <input type="password">
+          <button type="button" class="password-btn" data-toggle="Show;Hide">Show</button>
+        </div>
+        <i class="fa-regular fa-copy data-list__icon"></i>
+      </div>
     </form>
   </div>
 
