@@ -69,7 +69,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<br/>
+<div align="center">
+  <img src="public/images/dashboard.png" alt="Dashboard" width="50%">
+</div>
+<br/>
 
 I created a secure password manager web application using Express.js and MongoDB. This project served a dual purpose - enhancing my programming skills and providing a safe means to store my passwords. It was an ideal way to transition back into coding after a lengthy academic hiatus.
 
