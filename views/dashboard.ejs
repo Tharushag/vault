@@ -21,17 +21,33 @@
         <i class="fa-solid fa-check checkbox__icon"></i>
       </span>
 
-      <div class="data-list__item">
-        <span class="checkbox checkbox__main checkbox--off" onclick="checkboxToggle(this)">
-          <i class="fa-solid fa-check checkbox__icon"></i>
-        </span>
-        <input type="text" name="website" autofocus>
-        <div class="rel">
-          <input type="password" name="password" class="password">
-          <button type="button" class="password-btn" data-toggle="Show;Hide" onclick="passwordVisibilityToggle(this)">Show</button>
+      <% if (locals.data) { %>
+        <% data.forEach(d => { %>
+        <div class="data-list__item">
+          <span class="checkbox checkbox__main checkbox--off" onclick="checkboxToggle(this)">
+            <i class="fa-solid fa-check checkbox__icon"></i>
+          </span>
+          <input type="text" name="website" value="<%= d.website %>" autofocus>
+          <div class="rel">
+            <input type="password" name="password" value="<%= d.password %>" class="password">
+            <button type="button" class="password-btn" data-toggle="Show;Hide" onclick="passwordVisibilityToggle(this)">Show</button>
+          </div>
+          <i class="fa-regular fa-copy data-list__icon copy" onclick="copy(this)"></i>
         </div>
-        <i class="fa-regular fa-copy data-list__icon copy" onclick="copy(this)"></i>
-      </div>
+        <% }) %>
+      <% } else { %>
+        <div class="data-list__item">
+          <span class="checkbox checkbox__main checkbox--off" onclick="checkboxToggle(this)">
+            <i class="fa-solid fa-check checkbox__icon"></i>
+          </span>
+          <input type="text" name="website" autofocus>
+          <div class="rel">
+            <input type="password" name="password" class="password">
+            <button type="button" class="password-btn" data-toggle="Show;Hide" onclick="passwordVisibilityToggle(this)">Show</button>
+          </div>
+          <i class="fa-regular fa-copy data-list__icon copy" onclick="copy(this)"></i>
+        </div>
+      <% } %>
     </form>
   </div>
 

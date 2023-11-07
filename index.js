@@ -5,7 +5,7 @@ import encrypt from "mongoose-encryption";
 const app = express();
 const port = 3000;
 let session = {
-  user: null,
+  user: 123,
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -38,8 +38,15 @@ const Website = new mongoose.model("Website", websiteSchema);
 
 app.get("/", (req, res) => {
   if (session.user) {
-
-    res.render("dashboard.ejs");
+    Website.findOne({ user_id: session.user }).then(info => {
+      if (info) {
+        res.render("dashboard.ejs", { data: info.websites });
+      } else {
+        res.render("dashboard.ejs");
+      }
+    }).catch(err => {
+      console.log(err);
+    });
   } else {
     res.redirect("/login");
   }
@@ -51,7 +58,6 @@ app.get("/login", (req, res) => {
 
 app.post("/login", (req, res) => {
   User.findOne({ name: req.body.name }).then(user => {
-
     if (user) {
       if (user.password === req.body.password) {
         session.user = user.id;
@@ -97,21 +103,39 @@ app.get("/forgot-password", (req, res) => {
 })
 
 app.post("/save", (req, res) => {
-  if (session.user) {
-    const websites = typeof req.body.website === 'string' ? [req.body.website] : req.body.website;
-    const passwords = typeof req.body.password === 'string' ? [req.body.password] : req.body.password;
-    const data = websites.map((site, i) => {
-      return { website: site, password: passwords[i] }
-    }).filter(d => d.website != '');
+  let data;
 
-    const website = Website({
-      user_id: session.user,
-      websites: data,
-    });
-
-    website.save();
-    res.redirect('/');
+  if (!req.body.website) {
+    data = null;
+  } else if (typeof req.body.website === "string") {
+    console.log(123);
+    data = [{ website: req.body.website, password: req.body.password }];
   } else {
+    console.log(345);
+    data = req.body.website.map((site, i) => {
+      return { website: site, password: req.body.password[i] };
+    })
+  }
+
+  if (data) {
+    Website.findOne({ user_id: session.user }).then(infoExists => {
+      if (infoExists) {
+        Website.deleteMany({ user_id: session.user }).catch(err => console.log(err));
+      }
+  
+      const newDoc = Website({
+        user_id: session.user,
+        websites: data,
+      });
+  
+      newDoc.save().then(() => {
+        res.redirect('/');
+      }).catch(err => {
+        console.log(err);
+      });
+    });
+  } else {
+    Website.deleteMany({ user_id: session.user }).catch(err => console.log(err));
     res.redirect('/');
   }
 });
