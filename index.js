@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import encrypt from "mongoose-encryption";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
 let session = {
-  user: 123,
+  user: null,
 }
 
 app.use(express.urlencoded({ extended: true }));
@@ -28,10 +31,8 @@ const websiteSchema = new mongoose.Schema({
   ]
 });
 
-const secret = "EO$WIriJESKKRNKJENWKJWEjewkjnwekjnwe";
-
-userSchema.plugin(encrypt, { secret: secret, encryptedFields: ["password"] })
-websiteSchema.plugin(encrypt, { secret: secret, encryptedFields: ["websites"] });
+userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["password"] })
+websiteSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ["websites"] });
 
 const User = new mongoose.model("User", userSchema);
 const Website = new mongoose.model("Website", websiteSchema);
@@ -108,10 +109,8 @@ app.post("/save", (req, res) => {
   if (!req.body.website) {
     data = null;
   } else if (typeof req.body.website === "string") {
-    console.log(123);
     data = [{ website: req.body.website, password: req.body.password }];
   } else {
-    console.log(345);
     data = req.body.website.map((site, i) => {
       return { website: site, password: req.body.password[i] };
     })
